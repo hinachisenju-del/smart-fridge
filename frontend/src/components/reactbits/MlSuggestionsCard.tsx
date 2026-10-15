@@ -31,7 +31,7 @@ export const MlSuggestionsCard: React.FC<MlSuggestionsCardProps> = ({
     );
   }
 
-  const isColdStart = mlData?.cold_start ?? true;
+  const isColdStart = mlData ? (mlData.coldStart ?? mlData.cold_start ?? true) : true;
   const suggestions = mlData?.suggestions ?? [];
 
   return (
