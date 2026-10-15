@@ -1,0 +1,36 @@
+{
+  "training_samples": 900,
+  "test_samples": 300,
+  "naive_baseline": {
+    "mae_days": 9.367,
+    "rmse_days": 12.936,
+    "r2": -0.012
+  },
+  "ml_model": {
+    "mae_days": 2.555,
+    "rmse_days": 7.357,
+    "r2": 0.673,
+    "precision": 0.908,
+    "recall": 0.915,
+    "mae_improvement_percent": 72.72
+  },
+  "features": [
+    "current_quantity",
+    "min_threshold",
+    "stock_ratio",
+    "days_since_last_purchase",
+    "avg_consumption_rate",
+    "days_to_expiry",
+    "shelf_life",
+    "data_points_count",
+    "cat_PRODUCE",
+    "cat_DAIRY",
+    "cat_MEAT",
+    "cat_PANTRY",
+    "cat_BAKERY",
+    "cat_BEVERAGES",
+    "cat_FROZEN",
+    "cat_HOUSEHOLD"
+  ],
+  "split": "time_aware_forward_split (75% train / 25% test)"
+}

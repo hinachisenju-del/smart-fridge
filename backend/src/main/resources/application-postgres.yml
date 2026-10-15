@@ -1,0 +1,21 @@
+# ============================================================================
+# PostgreSQL Profile ('postgres')
+# Primary database configuration for Smart Fridge.
+# Activate via: $env:SPRING_PROFILES_ACTIVE="postgres"
+# ============================================================================
+spring:
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/smart_fridge}
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+  h2:
+    console:
+      enabled: false

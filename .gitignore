@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Frontend build output
+dist/
+frontend/dist/
+frontend/.vite/
+
+# Backend build output & local dev database
+target/
+backend/target/
+backend/data/
+*.mv.db
+*.trace.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+frontend/.env
+frontend/.env.local
+backend/.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Python & ML
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Data & local DB
+data/
+*.db
+
+# Tooling
+.graphify/
+
+# IDE & OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

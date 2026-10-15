@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: smart-fridge-backend
+  profiles:
+    # Defaults to 'dev' (file-backed H2 fallback) when SPRING_PROFILES_ACTIVE is not set.
+    # Set SPRING_PROFILES_ACTIVE=postgres to run with PostgreSQL.
+    default: dev
+  jpa:
+    open-in-view: false
+
+server:
+  port: ${SERVER_PORT:8081}
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
