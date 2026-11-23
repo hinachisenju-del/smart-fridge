@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>/</loc>
+    <image:image>
+      <image:loc>/og-image.png</image:loc>
+      <image:title>Smart List - Household Grocery Inventory &amp; Expiry Manager</image:title>
+      <image:caption>Interactive dashboard preview showing inventory levels, freshness tracking, and multi-shopping lists</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>/hero-preview.png</image:loc>
+      <image:title>Smart List Application Hero View</image:title>
+      <image:caption>Responsive smart fridge and grocery inventory tracking preview</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>/hero-preview.webp</image:loc>
+      <image:title>Smart List Application WebP Optimized Preview</image:title>
+    </image:image>
+  </url>
+</urlset>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>/og-image.png</image:loc>
+      <image:title>Smart List - Household Grocery Inventory &amp; Expiry Manager</image:title>
+      <image:caption>Interactive dashboard preview showing inventory levels, freshness tracking, and multi-shopping lists</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>/hero-preview.png</image:loc>
+      <image:title>Smart List Application Hero View</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>/#inventory</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>/#shopping-list</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>/#budget</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>/#freshness-alerts</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

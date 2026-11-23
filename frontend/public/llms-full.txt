@@ -1,0 +1,83 @@
+# Smart List (Smart Fridge) — Full Technical Reference & Architecture Guide
+
+Smart List is a modern, high-performance grocery management system developed to eliminate domestic food waste and streamline household grocery planning.
+
+## 1. Domain Entities & Data Schemas
+
+### GroceryItem
+Tracks individual grocery items stocked in the refrigerator, freezer, or pantry.
+- `id` (Long, PK): Unique item identifier.
+- `productName` (String, max 120): Name of the grocery item.
+- `category` (Enum): DAIRY, PRODUCE, MEAT_SEAFOOD, BEVERAGES, BAKERY, DELI_PREPARED, PANTRY, FROZEN, CONDIMENTS, OTHER.
+- `quantity` (Double): Current stock level.
+- `unit` (String, max 30): Measurement unit (e.g., kg, L, pcs, cartons, boxes).
+- `storageLocation` (Enum): UPPER_SHELF, MIDDLE_SHELF, LOWER_SHELF, CRISPER_DRAWER, DOOR_BIN, FREEZER, PANTRY.
+- `minimumStockThreshold` (Double): Restock trigger point. When quantity <= threshold, item is marked as low stock.
+- `purchaseDate` (LocalDate): Date when the product was acquired.
+- `expiryDate` (LocalDate, optional): Expiration or best-before date.
+- `expirySource` (Enum, optional): CONFIRMED (package date), ESTIMATED (open date or default estimate).
+- `price` (BigDecimal, optional): Purchase or estimated unit price.
+- `notes` (String, optional): Custom culinary or storage notes.
+
+### ShoppingList
+Represents a customizable, segregated shopping list.
+- `id` (Long, PK): Unique list identifier.
+- `title` (String, max 120): Name of the shopping list (e.g., "Main Shopping List", "Costco Bulk Run").
+- `color` (String): Hex or semantic color code for visual distinction.
+- `icon` (String): Lucide icon identifier (e.g., shopping-bag, utensils, sparkles).
+- `isArchived` (Boolean): Archival status flag.
+- `isDefault` (Boolean): Default list flag (protected from deletion).
+
+### ShoppingListItem
+An item contained within a specific ShoppingList.
+- `id` (Long, PK): Unique identifier.
+- `name` (String, max 120): Product title.
+- `category` (Enum): Food category.
+- `quantity` (Double): Quantity to purchase.
+- `unit` (String): Unit of measure.
+- `estimatedPrice` (BigDecimal, optional): Anticipated cost.
+- `purchased` (Boolean): Toggle indicator for purchased items.
+- `priority` (Enum): LOW, MEDIUM, HIGH, URGENT.
+- `inventoryItemId` (Long, optional): Foreign reference to a linked GroceryItem.
+- `shoppingListId` (Long, FK): Parent ShoppingList reference.
+
+## 2. REST API Endpoints
+
+### Inventory Management (`/api/inventory`)
+- `GET /api/inventory`: Filter and search inventory by category, storage location, or keyword.
+- `GET /api/inventory/dashboard`: Returns aggregate metrics (total items, expired, expiring today, expiring soon, low stock, upcoming shopping list items, budget preview).
+- `GET /api/inventory/expiry`: Filter items by explicit ExpiryStatus (EXPIRED, EXPIRES_TODAY, EXPIRING_SOON, FRESH, NO_EXPIRY).
+- `POST /api/inventory`: Create a new grocery item with Jakarta Bean validation.
+- `PUT /api/inventory/{id}`: Update grocery item details.
+- `PATCH /api/inventory/{id}/quantity`: Atomic quantity adjustments with action types: USE, FINISH, RESTOCK, CORRECT. Prevents negative quantities.
+- `DELETE /api/inventory/{id}`: Remove an item from inventory.
+
+### Multi-Shopping Lists (`/api/shopping-lists`)
+- `GET /api/shopping-lists`: List all active or archived shopping lists with item counts and budget sums.
+- `POST /api/shopping-lists`: Create a new shopping list.
+- `PUT /api/shopping-lists/{id}`: Rename or recolor a list.
+- `PATCH /api/shopping-lists/{id}/archive`: Soft-archive a list (default list is protected).
+- `PATCH /api/shopping-lists/{id}/restore`: Restore an archived list.
+- `DELETE /api/shopping-lists/{id}`: Safe deletion (blocks deleting default or non-empty lists).
+- `GET /api/shopping-lists/{id}/items`: List items in a specific list.
+- `POST /api/shopping-lists/{id}/items`: Add item to a specific list.
+
+### Global Shopping List & Cross-Loop Operations (`/api/shopping-list`)
+- `PATCH /api/shopping-list/{id}/purchased`: Toggle purchased status.
+- `DELETE /api/shopping-list/purchased`: Clear purchased items.
+- `GET /api/shopping-list/budget`: Computes unchecked vs checked budget totals and item counts.
+- `GET /api/shopping-list/suggestions`: Identifies low-stock inventory items not yet in shopping lists.
+- `POST /api/shopping-list/from-inventory/{inventoryItemId}`: Add inventory item directly to shopping list.
+- `POST /api/shopping-list/{id}/convert-to-inventory`: Converts purchased shopping item back to fridge inventory.
+
+### Machine Learning & Prediction (`/api/ml`)
+- `GET /api/ml/suggestions`: Returns predictive restock suggestions (predictedDaysUntilDepleted, urgency, confidence). Requires >= 3 pantry items to avoid sparse cold start; falls back to heuristic rate if microservice is offline.
+- `GET /api/ml/status`: Health check for optional ML microservice.
+
+## 3. Freshness & Expiry Algorithm
+- Days Until Expiry = `ChronoUnit.DAYS.between(today, expiryDate)`
+- `expiryDate < today`: `EXPIRED`
+- `expiryDate == today`: `EXPIRES_TODAY`
+- `today < expiryDate <= today + 3 days`: `EXPIRING_SOON`
+- `expiryDate > today + 3 days`: `FRESH`
+- `expiryDate == null`: `NO_EXPIRY`

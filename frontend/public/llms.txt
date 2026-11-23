@@ -1,0 +1,21 @@
+# Smart List (Smart Fridge)
+
+> Intelligent grocery inventory management, real-time freshness tracking, multi-list shopping, and automated household restock forecasting.
+
+Smart List is a responsive full-stack web application engineered to eliminate domestic food waste and simplify grocery logistics. It unifies pantry inventory tracking, expiration date monitoring, categorized shopping list creation, and grocery budgeting into a single responsive platform.
+
+## Core Capabilities
+- [Inventory Management](/): Track groceries across 10 food categories and 7 refrigerator/pantry storage zones with exact quantities and units.
+- [Freshness Alerts](/): Real-time freshness status evaluation (Fresh, Expiring Soon, Expires Today, Expired) using deterministic date calculations.
+- [Multi-Shopping Lists](/): Create, customize, and maintain multiple segregated shopping lists (e.g. Weekly Essentials, Farmers Market).
+- [Budget Tracking](/): Real-time estimation of grocery trip expenses distinguishing pending items from purchased goods.
+- [Closed-Loop Synchronization](/): One-click transfer from low-stock pantry items directly into active shopping lists, and conversion of purchased items back into pantry inventory.
+
+## Architecture & Technical Stack
+- Frontend: React, TypeScript, Tailwind CSS, Vite Single-Page Application.
+- Backend: Spring Boot 4.1.1 REST API running on Java 21 LTS with Jakarta Bean Validation.
+- Database: Dual-profile persistence supporting PostgreSQL 15+ and file-backed H2 engine.
+- Optional ML Microservice: Python FastAPI service on port 8082 with automated rule-based heuristic fallback.
+
+## Documentation & Full Reference
+- [Full LLM Reference](/llms-full.txt): Comprehensive API documentation, data schemas, entity definitions, and operational workflows.

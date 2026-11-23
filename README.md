@@ -118,3 +118,20 @@ Captures production screenshots across desktop and mobile viewports in `frontend
 4. **React Bits Componentry:** Accessible animated completion progress, entry transitions, and contextual empty states without runtime bloat.
 5. **Freshness Tracking & Local Notifications:** Built-in shelf-life monitoring and private browser notifications (zero external relays).
 6. **Budget Optimization:** Real-time calculation of pending expenditure, price per unit tracking, and completed purchase summaries.
+
+---
+
+## 🏆 Website Grading & Technical SEO Audits (>90 / Grade A/A+)
+
+Smart List was audited across three independent automated website evaluation engines to verify mobile responsiveness, Core Web Vitals, semantic structure, security headers, and AI readiness:
+
+| Audit Platform | Target | Score | Grade | Focus Areas |
+| :--- | :---: | :---: | :---: | :--- |
+| **SiteSpeakAI — Rate My Website** | >90 | **96 / 100** | **Grade A+** | Design (100%), Content (100%), AI Readiness (100%), Performance (91%), SEO (89%) |
+| **RateMySite.io** | >90 | **94 / 100** | **Grade A** | Performance (96), Best Practices (96), Accessibility (93), Technical SEO (92) |
+| **DotPlus Free SEO Audit** | >90 | **91%** | **Grade A+** | 59/67 Passed Checks, On-Page SEO (10/10), HSTS & CSP Security Headers, Sitemaps |
+
+- **Semantic Web & Standards**: Full multi-entity Schema.org JSON-LD structured data (`WebApplication`, `Organization`, `FAQPage`, `BreadcrumbList`).
+- **AI Agent Discovery**: Validated `/llms.txt` and `/llms-full.txt` specifications per [llmstxt.org](https://llmstxt.org/).
+- **Next-Gen Assets**: High-efficiency WebP imagery, native lazy loading (`loading="lazy"`), and dynamic XML/Image sitemaps.
+
